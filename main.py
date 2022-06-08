@@ -1,12 +1,19 @@
 import socket
 import sys
 import os
+import yaml
 
 from json import dumps
 from sensor import get_data
 
-serverAddr = 'caos.socket'
+socket_address = 'caos.socket'
 
+DEFAULT_CONFIG_FILENAME = "default.yaml"
+CONFIG_FILENAME = "config.yaml"
+
+config_filename = DEFAULT_CONFIG_FILENAME if not os.path.exists(CONFIG_FILENAME) else CONFIG_FILENAME
+with open(config_filename, "r") as config_file:
+    config = yaml.load(config_file, Loader=yaml.FullLoader)
 
 def main():
     # create sockert
@@ -14,9 +21,9 @@ def main():
     if not sock:
         print('socket error', file=sys.stderr)
     # bind to a file
-    if os.path.exists(serverAddr):
-        os.unlink(serverAddr)
-    if sock.bind(serverAddr):
+    if os.path.exists(socket_address):
+        os.unlink(socket_address)
+    if sock.bind(socket_address):
         print('socket.bind error', file=sys.stderr)
 
     # listen
@@ -28,13 +35,13 @@ def main():
         # waiting for client connecting
         conn, _ = sock.accept()
         try:
-            data = get_data({'pin': 4})
+            data = get_data(config.get('sensor'))
             conn.sendall(dumps(data).encode('utf-8'))
             conn.sendall()
         finally:
             # close the connection
             conn.close()
-            os.unlink(serverAddr)
+            os.unlink(socket_address)
 
 
 if __name__ == "__main__":
