@@ -26,6 +26,9 @@ def main():
     if sock.bind(socket_address):
         print('socket.bind error', file=sys.stderr)
 
+    # chmod to 777
+    os.chmod(socket_address, 0o777)
+
     # listen
     if sock.listen(5):
         print('socket.listen error', file=sys.stderr)
