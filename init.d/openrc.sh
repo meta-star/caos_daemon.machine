@@ -5,7 +5,7 @@ name="daemon.linux"
 description="The daemon for caOS"
 
 directory="/opt/daemon.linux"
-command="/usr/bin/python3 main.py"
+command="/usr/bin/node app.py"
 
 depend() {
 	need localmount
