@@ -1,0 +1,22 @@
+{
+  "name": "daemon.linux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/startw-caos/daemon.linux.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/startw-caos/daemon.linux/issues"
+  },
+  "homepage": "https://caos.startw.cf",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}
