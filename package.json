@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/startw-caos/daemon.linux.git"
   },
-  "author": "",
+  "author": "Star Inc.",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/startw-caos/daemon.linux/issues"
