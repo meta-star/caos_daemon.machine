@@ -5,10 +5,21 @@
 const { existsSync } = require("fs");
 const { join: pathJoin } = require("path");
 
+const UNIX_SYSTEMS = [
+    "linux",
+    "darwin",
+    "freebsd",
+    "openbsd",
+    "sunos",
+    "aix",
+    "android",
+    "cygwin",
+    "netbsd"
+];
+
 module.exports = () => {
     // Force the app only to run on Unix-like systems
-    const unixSystems = ["linux", "darwin", "freebsd", "openbsd", "sunos", "aix", "android", "cygwin", "netbsd"];
-    if (!unixSystems.includes(process.platform)) {
+    if (!UNIX_SYSTEMS.includes(process.platform)) {
         console.error("caOS only runs on Unix-like systems.");
         process.exit(1);
     }
